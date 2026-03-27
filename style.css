@@ -5,6 +5,7 @@
     margin: 0px;
     padding: 0px;
     font-family: "Google Sans Code", monospace;
+    color: #ffffff;
 }
 
 body {
@@ -26,8 +27,6 @@ body {
     top: 0;
     left: 0;
 
-    z-index: 1;
-
     filter: blur(20px);
     opacity: 0;
     transition: opacity 2s ease-in-out, filter 2.5s ease-in-out;
@@ -39,7 +38,29 @@ body {
 }
 
 .background.preloaded {
-    transition: filter 0.3s ease-in-out;
+    transition: opacity ease-in-out, filter 0.4s ease-in-out;
     filter: blur(0px);
     opacity: 1;
+}
+
+.grid {
+    display: grid;
+    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 1;
+
+    background-color: #4e5b635e;
+
+
+    place-items: center;
+}
+
+.time {
+    font-weight: 500;
+    font-size: 6em;
 }
