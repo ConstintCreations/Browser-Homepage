@@ -27,7 +27,7 @@ async function saveRandomBackground(url, day) {
 }
 
 function getRandomBackgroundUrl() {
-    return `https://picsum.photos/${window.innerWidth}/${window.innerHeight}`;
+    return `https://picsum.photos/${screen.width}/${screen.height}`;
 }
 
 function getDateString() {
