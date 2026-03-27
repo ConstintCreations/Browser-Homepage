@@ -11,6 +11,7 @@ body {
     font-weight: normal;
     font-size: 24px;
     background-color: #0f172b;
+    overflow: hidden;
 }
 
 .background {
@@ -21,12 +22,24 @@ body {
     background-size: cover;
     display: flow-root;
 
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    z-index: 1;
+
     filter: blur(20px);
     opacity: 0;
-    transition: opacity 0.5s ease-in-out, filter 0.8s ease-in-out;
+    transition: opacity 2s ease-in-out, filter 2.5s ease-in-out;
 }
 
 .background.loaded {
+    filter: blur(0px);
+    opacity: 1;
+}
+
+.background.preloaded {
+    transition: filter 0.3s ease-in-out;
     filter: blur(0px);
     opacity: 1;
 }
