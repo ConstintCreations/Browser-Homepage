@@ -78,7 +78,7 @@ function assignCommitLevels(lastCommits) {
 
         
         const date = new Date();
-        date.setDate(today.getDate() - index);
+        date.setDate(today.getDate() - (13 - index));
 
         const day = String(date.getDate()).padStart(2, "0");
         const month = String(date.getMonth() + 1).padStart(2, "0");
