@@ -43,7 +43,7 @@ async function getBackground() {
         saveRandomBackground(url, "today");
         return loadedImageUrl;
     } catch(error) {
-        console.log(error);
+        console.log(error.message);
         return null;
     }
 }

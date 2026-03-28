@@ -6,15 +6,38 @@
 
         <title>Home</title>
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons.min.css">
+
         <link rel="stylesheet" href="style.css">
         <script defer src="background.js"></script>
         <script defer src="clock.js"></script>
+        <script defer src="weather.js"></script>
     </head>
     <body>
         <div class="background">
             <div class="grid">
                 <div class="time-weather-container">
                     <div class="time">00:00</div>
+                    <div class="weather">
+                        <div class="wi"></div>
+                        |
+                        <div class="temperature">
+                            <p class="temperature-value"></p>
+                            <div class="high-low">
+                                <div class="high"></div>
+                                <hr class="high-low-divider">
+                                <div class="low"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="searchBar">
+
+                </div>
+
+                <div class="footer">
+                    
                 </div>
             </div>
         </div>
