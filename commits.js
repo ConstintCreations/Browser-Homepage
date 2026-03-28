@@ -8,6 +8,8 @@ const commitTracker = document.querySelector(".commit-tracker");
 
 const lastCommitsElement = document.querySelector(".last-commits");
 
+let isFresh = false;
+
 let savedGithubUsername = localStorage.getItem("githubUsername");
 let savedCommitHistory = localStorage.getItem("githubCommitHistory");
 let savedCommitHistoryAccessTime = parseInt(localStorage.getItem("commitHistoryAccessed"));
@@ -89,7 +91,7 @@ function assignCommitLevels(lastCommits) {
 }
 
 async function showCommitHistory() {
-    returnedCommitHistory = await getCommitHistory();
+    let returnedCommitHistory = await getCommitHistory();
     if (!returnedCommitHistory) {
         githubUsernameElement.classList.add("show");
         githubRepoLinkElement.href = "https://github.com/repos?q=owner%3A%40me+sort%3Aupdated";
@@ -98,14 +100,22 @@ async function showCommitHistory() {
 
     localStorage.setItem("commitHistoryAccessed", Date.now());
     savedCommitHistoryAccessTime = Date.now();
-    localStorage.setItem("githubCommitHistory", JSON.stringify(returnedCommitHistory));
-    savedCommitHistory = returnedCommitHistory;
     if (savedGithubUsername != githubUsername) {
         savedGithubUsername = githubUsername;
         localStorage.setItem("githubUsername", githubUsername);
     }
 
-    let lastTwoWeeksOfCommits = getLastTwoWeeksOfCommits(returnedCommitHistory);
+
+    let lastTwoWeeksOfCommits;
+
+    if (isFresh) {
+        lastTwoWeeksOfCommits = getLastTwoWeeksOfCommits(returnedCommitHistory);
+    } else {
+        lastTwoWeeksOfCommits = returnedCommitHistory;
+    }
+    
+    savedCommitHistory = lastTwoWeeksOfCommits;
+    localStorage.setItem("githubCommitHistory", JSON.stringify(lastTwoWeeksOfCommits));
 
     assignCommitLevels(lastTwoWeeksOfCommits);
 
@@ -116,6 +126,7 @@ async function showCommitHistory() {
 async function getCommitHistory() {
     if (githubUsername == savedGithubUsername && savedCommitHistory && savedCommitHistoryAccessTime) {
         if (Date.now() - parseInt(savedCommitHistoryAccessTime) < 3600000) {
+            isFresh = false;
             return JSON.parse(savedCommitHistory);
         }
     }
@@ -126,6 +137,7 @@ async function getCommitHistory() {
             throw new Error("Failed to fetch commit history: " + response.status);
         }
         const result = await response.json();
+        isFresh = true;
         return result;
     } catch (error) {
         console.log(error.message);

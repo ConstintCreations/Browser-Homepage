@@ -140,12 +140,12 @@ body {
     padding: 12px 0px;
 
     display: flex; 
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: space-around;
 }
 
-.commits {
+.footer-stats {
     font-size: 1.5em;
     display: flex; 
     flex-direction: row;
@@ -154,7 +154,7 @@ body {
     gap: 15px;
 }
 
-.commit-tracker {
+.footer-data {
     gap: 8px;
 
     margin-left: -15px;
@@ -170,21 +170,21 @@ body {
     transition: opacity 0.5s ease-in-out, max-width 0.5s linear 0.5s, height 0s linear 0.5s;
 }
 
-.commit-tracker.show {
+.footer-data.show {
     transition: opacity 0.5s ease-in-out 3.5s, max-width 0.5s linear 3s, height 0.5s linear 3s;
     opacity: 1;
     max-width: 400px;
     height: 36px;
 }
 
-.commit-tracker.preshow {
+.footer-data.preshow {
     transition: none;
     opacity: 1;
     max-width: 400px;
     height: 36px;
 }
 
-.github-username {
+.username {
     overflow: hidden;
 
     opacity: 0;
@@ -197,21 +197,21 @@ body {
     transition: opacity 0.5s ease-in-out, max-width 0.5s linear 0.5s, height 0s linear 0.5s;
 }
 
-.github-username.show {
+.username.show {
     transition: opacity 0.5s ease-in-out 3.5s, max-width 0.5s linear 3s, height 0s linear 3s;
     opacity: 1;
     max-width: 400px;
     height: 36px;
 }
 
-.github-username.preshow {
+.username.preshow {
     transition: none;
     opacity: 1;
     max-width: 400px;
     height: 36px;
 }
 
-#github-username-input {
+.username-input {
     height: 32px;
     margin: 2px 0px;
     padding: 0px 5px;
@@ -222,11 +222,11 @@ body {
     transition: border 0.2s ease-in-out;
 }
 
-#github-username-input:focus {
+.username-input:focus {
     border: 2px solid #196c2e;
 }
 
-.github-username-button {
+.username-button {
     height: 24px;
     width: 24px;
     margin: 8px 4px;
@@ -240,11 +240,11 @@ body {
     text-align: center;
 }
 
-.github-username-button:focus {
+.username-button:focus {
     background-color: #56d364;
 }
 
-.github-logo-link {
+.logo-link {
     width: 36px;
     height: 36px;
 }
@@ -272,7 +272,70 @@ body {
     position: relative;
 }
 
-.commit-box::after {
+.level-1 {
+    background-color: #033a16;
+}
+
+.level-2 {
+    background-color: #196c2e;
+}
+
+.level-3 {
+    background-color: #2ea043;
+}
+
+.level-4 {
+    background-color: #56d364;
+}
+
+.chess-data {
+    font-size: 24px;
+    align-items: center;
+}
+
+.chess-win-draw-loss-record {
+    position: relative;
+
+    width: 200px;
+    height: 14px;
+
+    padding: 3px;
+    border-radius: 50px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+
+    background-color: #0f172b;
+}
+
+.win {
+    background-color: #56d364;
+    border-radius: 9px 0px 0px 9px;
+    transition: filter 0.4s ease-in-out;
+    position: relative;
+}
+
+.draw {
+    background-color: #b1b1b1;
+    transition: filter 0.4s ease-in-out;
+    position: relative;
+}
+
+.loss {
+    background-color: #d35656;
+    border-radius: 0px 9px 9px 0px;
+    transition: filter 0.4s ease-in-out;
+    position: relative;
+}
+
+.win:hover, .draw:hover, .loss:hover {
+    filter: brightness(1.2);
+}
+
+.commit-box::after, .win::after, .draw::after, .loss::after {
+    z-index: 10;
+    
     content: attr(data-tooltip);
 
     position: absolute;
@@ -296,22 +359,6 @@ body {
     transition: opacity 0.5s ease-in-out;
 }
 
-.commit-box:hover::after {
+.commit-box:hover::after, .win:hover::after, .draw:hover::after, .loss:hover::after {
     opacity: 1;
-}
-
-.level-1 {
-    background-color: #033a16;
-}
-
-.level-2 {
-    background-color: #196c2e;
-}
-
-.level-3 {
-    background-color: #2ea043;
-}
-
-.level-4 {
-    background-color: #56d364;
 }
