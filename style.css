@@ -62,10 +62,12 @@ body {
     grid-template-columns: 3fr 1fr 5fr 1fr 3fr;
     grid-template-rows: 
     auto 
+    auto
     1fr
     auto;
     grid-template-areas: 
     ". . T . ."
+    ". Q Q Q ."
     ". B B B ."
     "F F F F F";
 }
@@ -356,12 +358,11 @@ body {
     opacity: 1;
 }
 
-.searchBarArea {
+.search {
     grid-area: B;
     width: 100%;
     height: 100%;
-    display: grid;
-    place-items: center;
+    margin-top: 10%;
 }
 
 #searchForm {
@@ -404,4 +405,26 @@ body {
 
 #searchBar:focus, #submitButton:hover, #submitButton:focus {
     background-color: #0f172b44;
+}
+
+.quote {
+    grid-area: Q;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    max-height: 0px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out 0.5s, max-height 1s ease-in-out;
+    text-align: center;
+}
+
+.quote.show {
+    opacity: 1;
+    max-height: 500px;
+}
+
+.quote.preshow {
+    transition: none;
+    opacity: 1;
+    max-height: 500px;
 }
