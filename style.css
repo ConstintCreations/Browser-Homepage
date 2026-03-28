@@ -77,13 +77,6 @@ body {
     background-color: #0f172b88;
 }
 
-.footer {
-    grid-area: F;
-    width: 100%;
-    height: 100px;
-    background-color: #0f172b88;
-}
-
 .time-weather-container {
     grid-area: T;
 
@@ -137,4 +130,188 @@ body {
 .high-low-divider {
     border: 1px solid #ffffff;
     transform: scaleY(1.75);
+}
+
+.footer {
+    grid-area: F;
+    background-color: #0f172b88;
+
+    width: 100%;
+    padding: 12px 0px;
+
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.commits {
+    font-size: 1.5em;
+    display: flex; 
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+.commit-tracker {
+    gap: 8px;
+
+    margin-left: -15px;
+
+    opacity: 0;
+    max-width: 0px;
+    height: 0px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    transition: opacity 0.5s ease-in-out, max-width 0.5s linear 0.5s, height 0s linear 0.5s;
+}
+
+.commit-tracker.show {
+    transition: opacity 0.5s ease-in-out 3.5s, max-width 0.5s linear 3s, height 0.5s linear 3s;
+    opacity: 1;
+    max-width: 400px;
+    height: 36px;
+}
+
+.commit-tracker.preshow {
+    transition: none;
+    opacity: 1;
+    max-width: 400px;
+    height: 36px;
+}
+
+.github-username {
+    overflow: hidden;
+
+    opacity: 0;
+    max-width: 0px;
+    height: 0px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: opacity 0.5s ease-in-out, max-width 0.5s linear 0.5s, height 0s linear 0.5s;
+}
+
+.github-username.show {
+    transition: opacity 0.5s ease-in-out 3.5s, max-width 0.5s linear 3s, height 0s linear 3s;
+    opacity: 1;
+    max-width: 400px;
+    height: 36px;
+}
+
+.github-username.preshow {
+    transition: none;
+    opacity: 1;
+    max-width: 400px;
+    height: 36px;
+}
+
+#github-username-input {
+    height: 32px;
+    margin: 2px 0px;
+    padding: 0px 5px;
+    border-radius: 10px;
+    outline: none;
+    border: 2px solid #0f172b;
+    background-color: #0f172b;
+    transition: border 0.2s ease-in-out;
+}
+
+#github-username-input:focus {
+    border: 2px solid #196c2e;
+}
+
+.github-username-button {
+    height: 24px;
+    width: 24px;
+    margin: 8px 4px;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    background-color: #2ea043;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    font-size: 16px;
+    text-align: center;
+}
+
+.github-username-button:focus {
+    background-color: #56d364;
+}
+
+.github-logo-link {
+    width: 36px;
+    height: 36px;
+}
+
+.logo {
+    width: 36px;
+    color: #ffffff;
+}
+
+.last-commits {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    width: 136px;
+}
+
+.commit-box {
+    width: 16px;
+    height: 16px;
+    
+    border-radius: 4px;
+    background-color: #151b23;
+    position: relative;
+}
+
+.commit-box::after {
+    content: attr(data-tooltip);
+
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: #0f172ba0;
+    backdrop-filter: blur(10px);
+    
+    border-radius: 2px;
+
+    font-size: 12px;
+    padding: 4px 6px;
+
+    white-space: nowrap;
+
+    pointer-events: none;
+
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.commit-box:hover::after {
+    opacity: 1;
+}
+
+.level-1 {
+    background-color: #033a16;
+}
+
+.level-2 {
+    background-color: #196c2e;
+}
+
+.level-3 {
+    background-color: #2ea043;
+}
+
+.level-4 {
+    background-color: #56d364;
 }

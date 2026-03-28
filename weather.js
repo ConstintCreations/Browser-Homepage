@@ -84,6 +84,7 @@ async function initializeWeather() {
         latitude = position.coords.latitude || "0";
     } catch (error) {
         console.log(error.message);
+        return;
     }
 
     const weatherData = await getWeatherData(longitude, latitude);
@@ -92,9 +93,9 @@ async function initializeWeather() {
     const weatherCode = weatherData["daily"]["weather_code"][0];
 
     weatherIconElement.classList.add(weatherCodeMapping[weatherCode] || "wi-na");
-    temperatureElement.textContent = weatherData["current"]["temperature_2m"];
-    highElement.textContent = weatherData["daily"]["temperature_2m_max"][0];
-    lowElement.textContent = weatherData["daily"]["temperature_2m_min"][0];
+    temperatureElement.textContent = Math.floor(weatherData["current"]["temperature_2m"]);
+    highElement.textContent = Math.floor(weatherData["daily"]["temperature_2m_max"][0]);
+    lowElement.textContent = Math.floor(weatherData["daily"]["temperature_2m_min"][0]);
 
     weatherElement.classList.add("show");
 }
