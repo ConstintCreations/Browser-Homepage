@@ -34,15 +34,18 @@
                     </div>
                 </div>
 
-                <div class="searchBar">
-
+                <div class="searchBarArea">
+                    <form id="searchForm" action="https://www.google.com/search" method="get" target="_blank">
+                        <input name="q" autocomplete="off" spellcheck="false" type="text" id="searchBar" placeholder="Search...">
+                        <button type="submit" id="submitButton"><img width="24px" src="icons/search.svg"></button>
+                    </form>
                 </div>
 
                 <div class="footer">
                     <div class="commits footer-stats">
                         <a href="https://github.com/repos?q=owner%3A%40me+sort%3Aupdated" target="_blank" class="logo-link github-logo-link"><img class="logo" width="36px" src="icons/github.svg"></a>
                         <div class="username github-username">
-                            <input class="username-input" id="github-username-input" type="text" placeholder="Github Username"><button class="username-button github-username-button">&#x2714;</button>
+                            <input autocomplete="off" spellcheck="false" class="username-input" id="github-username-input" type="text" placeholder="Github Username"><button class="username-button github-username-button">&#x2714;</button>
                         </div>
                         <div class="commit-tracker footer-data">
                             <div class="last-commits">
@@ -67,7 +70,7 @@
                     <div class="chess-stats footer-stats">
                         <a href="chess.com/home" target="_blank" class="logo-link chess-logo-link"><img class="logo" height="36px" src="icons/chess.com.png"></a>
                         <div class="username chess-username">
-                            <input class="username-input" id="chess-username-input" type="text" placeholder="Chess.com Username"><button class="username-button chess-username-button">&#x2714;</button>
+                            <input autocomplete="off" spellcheck="false" class="username-input" id="chess-username-input" type="text" placeholder="Chess.com Username"><button class="username-button chess-username-button">&#x2714;</button>
                         </div>
                         <div class="chess-data footer-data">
                             <img class="chess-game-icon" src="icons/chess/rapid.svg">
