@@ -12,6 +12,12 @@ const chessRatingElement = document.querySelector(".chess-rating");
 const chessWinDrawLossRecordElement = document.querySelector(".chess-win-draw-loss-record");
 
 const modes = ["chess_daily", "chess_rapid", "chess_bullet", "chess_blitz"];
+const iconsMapping = {
+    "chess_daily": "icons/chess/daily.svg",
+    "chess_rapid": "icons/chess/rapid.svg",
+    "chess_bullet": "icons/chess/bullet.svg", 
+    "chess_blitz": "icons/chess/blitz.svg"
+};
 
 let savedChessUsername = localStorage.getItem("chessUsername");
 let savedChessData = localStorage.getItem("chessData");
@@ -73,6 +79,8 @@ async function showChessData() {
     const winPercentage = (record.win / totalGames) * 100;
     const drawPercentage = ((record.draw || 0) / totalGames) * 100;
     const lossPercentage = (record.loss / totalGames) * 100;
+
+    chessGameIconElement.src = iconsMapping[chessMode];
 
     chessWinDrawLossRecordElement.querySelector(".win").style.flex = winPercentage;
     chessWinDrawLossRecordElement.querySelector(".draw").style.flex = drawPercentage;
