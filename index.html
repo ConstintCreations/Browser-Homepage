@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <div class="chess-stats footer-stats">
-                        <a href="chess.com/home" target="_blank" class="logo-link chess-logo-link"><img class="logo" height="36px" src="icons/chess.com.png"></a>
+                        <a href="https://chess.com/home" target="_blank" class="logo-link chess-logo-link"><img class="logo" height="36px" src="icons/chess.com.png"></a>
                         <div class="username chess-username">
                             <input autocomplete="off" spellcheck="false" class="username-input" id="chess-username-input" type="text" placeholder="Chess.com Username"><button class="username-button chess-username-button">&#x2714;</button>
                         </div>
@@ -89,6 +89,8 @@
                     </div>
                 </div>
             </div>
+            <button class="reset-button" onclick="localStorage.clear(); location.reload();">Reset Data</button>
+            <button class="edit-username-button" onclick="document.querySelector('.github-logo-link').href='https://github.com/repos?q=owner%3A%40me+sort%3Aupdated'; document.querySelector('.chess-logo-link').href='https://chess.com/home'; document.querySelector('.commit-tracker').classList.remove('show', 'preshow'); document.querySelector('.chess-data').classList.remove('show', 'preshow'); document.querySelector('.github-username').classList.add('show'); document.querySelector('.chess-username').classList.add('show');">Edit Usernames</button>
         </div>
     </body>
 </html>

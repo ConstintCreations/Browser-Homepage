@@ -428,3 +428,25 @@ body {
     opacity: 1;
     max-height: 500px;
 }
+
+.reset-button, .edit-username-button {
+    position: absolute;
+    z-index: 20;
+    bottom: 14px;
+    font-size: 12px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #717785;
+    cursor: pointer;
+    right: 1vw;
+    transition: color 0.3s ease-in-out;
+}
+
+.edit-username-button {
+    bottom: 30px;
+}
+
+.reset-button:hover, .edit-username-button:hover {
+    color: #a4acbd;
+}

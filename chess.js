@@ -44,7 +44,7 @@ async function showChessData() {
     localStorage.setItem("chessDataAccessed", Date.now());
     savedChessAccessed = Date.now();
     localStorage.setItem("chessData", JSON.stringify(returnedChessData));
-    savedChessData = returnedChessData;
+    savedChessData = JSON.stringify(returnedChessData);
     if (savedChessUsername != chessUsername) {
         savedChessUsername = chessUsername;
         localStorage.setItem("chessUsername", chessUsername);

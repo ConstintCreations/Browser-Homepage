@@ -8,8 +8,6 @@ const commitTracker = document.querySelector(".commit-tracker");
 
 const lastCommitsElement = document.querySelector(".last-commits");
 
-let isFresh = false;
-
 let savedGithubUsername = localStorage.getItem("githubUsername");
 let savedCommitHistory = localStorage.getItem("githubCommitHistory");
 let savedCommitHistoryAccessTime = parseInt(localStorage.getItem("commitHistoryAccessed"));
@@ -105,19 +103,7 @@ async function showCommitHistory() {
         localStorage.setItem("githubUsername", githubUsername);
     }
 
-
-    let lastTwoWeeksOfCommits;
-
-    if (isFresh) {
-        lastTwoWeeksOfCommits = getLastTwoWeeksOfCommits(returnedCommitHistory);
-    } else {
-        lastTwoWeeksOfCommits = returnedCommitHistory;
-    }
-    
-    savedCommitHistory = lastTwoWeeksOfCommits;
-    localStorage.setItem("githubCommitHistory", JSON.stringify(lastTwoWeeksOfCommits));
-
-    assignCommitLevels(lastTwoWeeksOfCommits);
+    assignCommitLevels(returnedCommitHistory);
 
     commitTracker.classList.add("show");
     githubRepoLinkElement.href = `https://github.com/${githubUsername}?tab=repositories`;
@@ -126,7 +112,6 @@ async function showCommitHistory() {
 async function getCommitHistory() {
     if (githubUsername == savedGithubUsername && savedCommitHistory && savedCommitHistoryAccessTime) {
         if (Date.now() - parseInt(savedCommitHistoryAccessTime) < 3600000) {
-            isFresh = false;
             return JSON.parse(savedCommitHistory);
         }
     }
@@ -137,8 +122,12 @@ async function getCommitHistory() {
             throw new Error("Failed to fetch commit history: " + response.status);
         }
         const result = await response.json();
-        isFresh = true;
-        return result;
+        const processedResult = getLastTwoWeeksOfCommits(result);
+
+        savedCommitHistory = JSON.stringify(processedResult);
+        localStorage.setItem("githubCommitHistory", JSON.stringify(processedResult));
+
+        return processedResult;
     } catch (error) {
         console.log(error.message);
         return null;
